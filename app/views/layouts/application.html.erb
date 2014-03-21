@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MgBlog</title>
+  <title>Blog</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+    <div class="content">
 
+    <%= link_to "Admin Panel", posts_path, class: "pull-right" unless admin_signed_in? %>
+    <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "pull-right" if admin_signed_in? %>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <h1><%= link_to "Blog Title", root_url %></h1>
+    <br />
+      <%= yield %>
+    </div><!-- /container -->
+  </div><!-- /content -->
 </body>
 </html>
